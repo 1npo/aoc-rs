@@ -1,7 +1,14 @@
 [package]
 name = "aoc-rs"
 version = "0.1.0"
+authors = ["Nick O'Malley (1npo) <nickpeteromalley@gmail.com>"]
 edition = "2021"
+rust-version = "1.80.1"
+description = "My attempt at using Rust to solve Advent of Code puzzles"
+readme = "README.md"
+license = "MIT"
+keywords = ["advent-of-code", "aoc"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 regex = "1.11.1"
