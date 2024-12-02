@@ -76,7 +76,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "aoc-rs"
+name = "aoc-rs-1npo"
 version = "0.1.0"
 dependencies = [
  "clap",

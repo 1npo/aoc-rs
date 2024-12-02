@@ -1,8 +1,10 @@
 use std::env;
+use std::fs::read_to_string;
 use std::collections::HashMap;
+use std::path::{Path, PathBuf};
 
 use regex::Regex;
-use log::debug;
+use log::{info, debug};
 use reqwest::header::{USER_AGENT, COOKIE};
 
 const AOC_USER_AGENT: &str = "Nick's AoC Puzzle Solver <http://github.com/1npo/aoc-rs>";
@@ -16,6 +18,34 @@ fn get_session_token() -> String {
     };
 
     token
+}
+
+pub fn get_input(
+    year: u16,
+    day: u8
+) -> Result<String, Box<dyn std::error::Error>> {
+    // TODO: Make the root directory configurable from the command-line
+    let mut p = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let filename = format!("aoc_input_{year}_{day}");
+
+    p.push("input");
+    p.push(Path::new(&filename).file_stem().unwrap());
+    p.set_extension("txt");
+
+    if !p.exists() {
+        info!("Puzzle input not cached. Downloading...");
+        match get_puzzle_input(year, day) {
+            Ok(input) => {
+                std::fs::write(filename, &input).unwrap();
+                return Ok(input)
+            },
+            Err(e) => return Err(e)
+        }
+    }
+
+    info!("Got puzzle input from cached file");
+    
+    Ok(read_to_string(p).unwrap())
 }
 
 pub fn get_puzzle_input(

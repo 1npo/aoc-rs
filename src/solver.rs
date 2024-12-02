@@ -1,6 +1,6 @@
 use log::info;
 
-use crate::{Cli, Method, get_puzzle_input, post_puzzle_answer};
+use crate::{Cli, Method, get_input, post_puzzle_answer};
 use crate::puzzles::get_puzzle_solution;
 
 /// 1. Get the puzzle input for the given year and day (eg 2024, 1)
@@ -10,7 +10,7 @@ use crate::puzzles::get_puzzle_solution;
 ///     - Submit: Submit the puzzle solution to adventofcode.com and print a message
 ///         indicating whether or not the solution was correct
 pub fn solve_puzzle(cli: Cli) {
-    let puzzle_input = match get_puzzle_input(cli.year, cli.day) {
+    let puzzle_input = match get_input(cli.year, cli.day) {
         Ok(input) => {
             info!("Got puzzle input for year {:?} day {:?} part {:?}",
                 cli.year,
