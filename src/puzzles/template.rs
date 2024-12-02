@@ -1,13 +1,13 @@
 type Parsed = ();
 
-fn parse(input: &str) -> Parsed {}
+fn parse(input: String) -> Parsed {}
 
-pub fn part1(data: &Parsed) -> u8 {
-    0
+pub fn part1(input: String) -> String {
+    String::from("")
 }
 
-pub fn part2(data: &Parsed) -> u8 {
-    0
+pub fn part2(input: String) -> String {
+    String::from("")
 }
 
 #[cfg(test)]
