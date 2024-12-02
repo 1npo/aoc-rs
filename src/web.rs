@@ -24,32 +24,29 @@ pub fn get_input(
     year: u16,
     day: u8
 ) -> Result<String, Box<dyn std::error::Error>> {
-    let root_dir = match env::var("XDG_CACHE_DIR") {
-        Ok(dir) => dir,
+    let filename = format!("aoc_input_{year}_{day}");
+    let mut p = match env::var("XDG_CACHE_DIR") {
+        Ok(dir) => PathBuf::from(dir),
         Err(_) => {
             let mut p = match my_home()? {
-                Some(home) => home,
+                Some(home) => PathBuf::from(home),
                 None => PathBuf::from("/tmp"),
             };
             p.push(".cache");
-            p.display().to_string()
+            p
         }
     };
 
-    let mut p = PathBuf::from(root_dir);
-    let filename = format!("aoc_input_{year}_{day}");
-
-    p.push("aoc-rs-1npo");
+    p.push("aoc-rs");
     p.push(Path::new(&filename).file_stem().unwrap());
     p.set_extension("txt");
-
-    let cache_dir_prefix = p.parent().unwrap();
-    std::fs::create_dir_all(cache_dir_prefix).unwrap();
 
     if !p.exists() {
         info!("Puzzle input not cached. Downloading...");
         match get_puzzle_input(year, day) {
             Ok(input) => {
+                let cache_dir_prefix = p.parent().unwrap();
+                std::fs::create_dir_all(cache_dir_prefix).unwrap();            
                 std::fs::write(p, &input).unwrap();
                 return Ok(input)
             },
@@ -57,7 +54,7 @@ pub fn get_input(
         }
     }
 
-    debug!("Caching to file {p:?}");
+    debug!("Cached to file {p:?}");
     info!("Got puzzle input from cached file");
 
     Ok(std::fs::read_to_string(p).unwrap())

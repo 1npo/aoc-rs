@@ -14,10 +14,7 @@ use crate::{Cli, Method, get_input, post_puzzle_answer};
 pub fn solve_puzzle(cli: Cli) {
     let puzzle_input = match get_input(cli.year, cli.day) {
         Ok(input) => {
-            info!("Got puzzle input for year {:?} day {:?} part {:?}",
-                cli.year,
-                cli.day,
-                cli.part);
+            info!("Got puzzle input for year {:?} day {:?}", cli.year, cli.day);
             input
         },
         Err(error) => panic!("Failed to get puzzle input! ({:?})", error)
