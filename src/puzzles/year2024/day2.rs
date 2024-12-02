@@ -1,5 +1,3 @@
-use itertools::Itertools;
-
 fn parse(input: String) -> Vec<Vec<i8>> {
     let mut reports: Vec<Vec<i8>> = Vec::new();
 
@@ -12,6 +10,21 @@ fn parse(input: String) -> Vec<Vec<i8>> {
     reports
 }
 
+fn is_report_safe(report: &Vec<i8>) -> bool {
+    let mut sorted_asc = report.clone();
+    let mut sorted_desc = report.clone();
+    sorted_asc.sort();
+    sorted_desc.sort();
+    sorted_desc.reverse();
+
+    if *report == sorted_asc || *report == sorted_desc {
+        if report.windows(2).all(|w| (1..=3).contains(&(w[0] - w[1]).abs())) {
+            return true;
+        }
+    }
+    return false;
+}
+
 /// A line is safe when:
 /// - All numbers in the line are sorted from largest to smallest, or smallest to largest
 /// - The line doesn't contain any duplicate numbers
@@ -21,16 +34,8 @@ pub fn part1(input: String) -> String {
     let mut safe_reports = 0;
 
     for report in reports {
-        let mut sorted_asc = report.clone();
-        let mut sorted_desc = report.clone();
-        sorted_asc.sort();
-        sorted_desc.sort();
-        sorted_desc.reverse();
-        
-        if report == sorted_asc || report == sorted_desc {
-            if report.windows(2).all(|w| (1..4).contains(&(w[0] - w[1]).abs())) {
-                safe_reports += 1;
-            }
+        if is_report_safe(&report) {
+            safe_reports += 1;
         }
     }
 
@@ -38,7 +43,25 @@ pub fn part1(input: String) -> String {
 }
 
 pub fn part2(input: String) -> String {
-    String::from("")
+    let reports = parse(input);
+    let mut safe_reports = 0;
+
+    for report in reports {
+        if is_report_safe(&report) {
+            safe_reports += 1;
+        } else {
+            for i in 0..report.len() {
+                let mut report_copy = report.clone();
+                report_copy.remove(i);
+                if is_report_safe(&report_copy) {
+                    safe_reports += 1;
+                    break;
+                }
+            }
+        }
+    }
+
+    safe_reports.to_string()
 }
 
 #[cfg(test)]
@@ -60,7 +83,7 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        assert_eq!(0, part2(parse(TEST_INPUT)));
+        assert_eq!(String::from("4"), part2(parse(TEST_INPUT)));
     }
 
 }
