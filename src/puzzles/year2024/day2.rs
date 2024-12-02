@@ -10,6 +10,10 @@ fn parse(input: String) -> Vec<Vec<i8>> {
     reports
 }
 
+/// A line is safe when:
+/// - All numbers in the line are sorted from largest to smallest, or smallest to largest
+/// - The line doesn't contain any duplicate numbers
+/// - The distance between two consecutive numbers is 3 or less
 fn is_report_safe(report: &Vec<i8>) -> bool {
     let mut sorted_asc = report.clone();
     let mut sorted_desc = report.clone();
@@ -25,10 +29,6 @@ fn is_report_safe(report: &Vec<i8>) -> bool {
     return false;
 }
 
-/// A line is safe when:
-/// - All numbers in the line are sorted from largest to smallest, or smallest to largest
-/// - The line doesn't contain any duplicate numbers
-/// - The distance between two consecutive numbers is 3 or less
 pub fn part1(input: String) -> String {
     let reports = parse(input);
     let mut safe_reports = 0;
@@ -85,5 +85,4 @@ mod tests {
     fn test_part2() {
         assert_eq!(String::from("4"), part2(parse(TEST_INPUT)));
     }
-
 }
