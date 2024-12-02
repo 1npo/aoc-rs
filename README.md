@@ -20,4 +20,4 @@ aoc-rs-1npo submit 2024 1 2
 
 ## Acknowledgements
 
-Thanks to Nir for his [`template.rs` file](https://github.com/quicknir/advent_rust/blob/main/advent_2023/src/bin/template.rs) :)
+Thanks to Nir for his [`template.rs`](https://github.com/quicknir/advent_rust/blob/main/advent_2023/src/bin/template.rs) file :)
