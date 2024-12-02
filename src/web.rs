@@ -127,9 +127,9 @@ pub fn post_puzzle_answer(
             let caps = re.captures(text.as_str());
             let eta = match caps {
                 Some(capture) => format!("Rate limit exceeded. Please wait another \
-                                          {}m {}s before trying again",
-                                        String::from(&capture[1]),
-                                        String::from(&capture[2])),
+                                          {}m {}s before trying again.",
+                                         String::from(&capture[1]),
+                                         String::from(&capture[2])),
 
                 None => String::from(""),
             };
