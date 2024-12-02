@@ -105,38 +105,41 @@ pub fn post_puzzle_answer(
     let re: Regex = Regex::new(r"<article><p>(?<result>.*)<a").unwrap();
     let caps = re.captures(res_raw_text.as_str());
     let res_text = match caps {
-        Some(capture) => &capture[0].replace("<article><p>", "").replace(" <a", ""),
-        None => "",
+        Some(capture) => String::from(&capture[0])
+                                .replace("<article><p>", "")
+                                .replace(" <a", ""),
+        None => String::from(""),
     };
 
     let answer_response = match res_text {
         _ if res_text.contains("That's the right answer") => {
-            "Puzzle solved! Great job!"
+            String::from("Puzzle solved! Great job!")
         },
         _ if res_text.contains("That's not the right answer") => {
-            "Wrong answer. Try again!"
+            String::from("Wrong answer. Try again!")
         },
         _ if res_text.contains("Did you already complete it") => {
-            "Puzzle was already solved. Don't try again!"
+            String::from("Puzzle was already solved. Don't try again!")
         },
-        _ if res_text.contains("You gave an answer too recently") => {
-            // TODO: Figure out why this doesn't work and fix it.
-            //
-            // let re: Regex = Regex::new(r"You have (?:(\d+)m )?(\d+)s left to wait")
-            //                       .unwrap();
-            // let caps = re.captures(text).unwrap;
-            // let eta = match caps {
-            //     Some(capture) => &capture[0],
-            //     None => "",
-            // };
-            // 
-            // eta
-            "Rate limit exceeded. Wait a few more minutes before trying again."
+        text if res_text.contains("You gave an answer too recently") => {
+            let re: Regex = Regex::new(r"You have (?:(\d+)m )?(\d+)s left to wait")
+                                  .unwrap();
+            let caps = re.captures(text.as_str());
+            let eta = match caps {
+                Some(capture) => format!("Rate limit exceeded. Please wait another \
+                                          {}m {}s before trying again",
+                                        String::from(&capture[1]),
+                                        String::from(&capture[2])),
+
+                None => String::from(""),
+            };
+            
+            eta
         },
         _ => {
-            "Got an unexpected response from adventofcode.com."
+            String::from("Got an unexpected response from adventofcode.com.")
         },
     };
 
-    Ok(String::from(answer_response))
+    Ok(answer_response)
 }
