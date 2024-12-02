@@ -1,8 +1,8 @@
 use env_logger::Env;
 use clap::Parser;
 
-use aoc_rs::solve_puzzle;
-use aoc_rs::Cli;
+use aoc_rs_1npo::solve_puzzle;
+use aoc_rs_1npo::Cli;
 
 fn main() {
     let cli = Cli::parse();
