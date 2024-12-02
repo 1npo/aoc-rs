@@ -1,6 +1,6 @@
 [package]
 name = "aoc-rs-1npo"
-version = "0.4.0"
+version = "0.4.1"
 authors = ["Nick O'Malley (1npo) <nickpeteromalley@gmail.com>"]
 edition = "2021"
 rust-version = "1.80.1"
