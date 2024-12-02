@@ -20,6 +20,13 @@ fn get_session_token() -> String {
     token
 }
 
+/// Get the daily puzzle input from a cache file, if it exists, otherwise GET it from the
+/// AoC website and cache it to a file -- to avoid making unnecessary requests. Stores
+/// cache files in:
+///
+/// 1. `XDG_CACHE_DIR` environment variable, if set, otherwise:
+/// 2. `~/.cache/aoc-rs/`, if `~` is resolved by `homedir::my_home()`, otherwise:
+/// 3. `/tmp/.cache/.aoc-rs/`
 pub fn get_input(
     year: u16,
     day: u8
