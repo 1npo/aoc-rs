@@ -1,11 +1,11 @@
 use std::env;
-use std::fs::read_to_string;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
 use regex::Regex;
 use log::{info, debug};
 use reqwest::header::{USER_AGENT, COOKIE};
+use homedir::my_home;
 
 const AOC_USER_AGENT: &str = "Nick's AoC Puzzle Solver <http://github.com/1npo/aoc-rs>";
 
@@ -24,28 +24,43 @@ pub fn get_input(
     year: u16,
     day: u8
 ) -> Result<String, Box<dyn std::error::Error>> {
-    // TODO: Make the root directory configurable from the command-line
-    let mut p = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let root_dir = match env::var("XDG_CACHE_DIR") {
+        Ok(dir) => dir,
+        Err(_) => {
+            let mut p = match my_home()? {
+                Some(home) => home,
+                None => PathBuf::from("/tmp"),
+            };
+            p.push(".cache");
+            p.display().to_string()
+        }
+    };
+
+    let mut p = PathBuf::from(root_dir);
     let filename = format!("aoc_input_{year}_{day}");
 
-    p.push("input");
+    p.push("aoc-rs-1npo");
     p.push(Path::new(&filename).file_stem().unwrap());
     p.set_extension("txt");
+
+    let cache_dir_prefix = p.parent().unwrap();
+    std::fs::create_dir_all(cache_dir_prefix).unwrap();
 
     if !p.exists() {
         info!("Puzzle input not cached. Downloading...");
         match get_puzzle_input(year, day) {
             Ok(input) => {
-                std::fs::write(filename, &input).unwrap();
+                std::fs::write(p, &input).unwrap();
                 return Ok(input)
             },
             Err(e) => return Err(e)
         }
     }
 
+    debug!("Caching to file {p:?}");
     info!("Got puzzle input from cached file");
-    
-    Ok(read_to_string(p).unwrap())
+
+    Ok(std::fs::read_to_string(p).unwrap())
 }
 
 pub fn get_puzzle_input(
