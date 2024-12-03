@@ -1,8 +1,8 @@
 # aoc-rs
-This is my attempt at using Rust to solve Advent of Code puzzles (starting 2024). It's also my attempt to learn Rust!
+This is my attempt at using Rust to build an Advent of Code puzzle solver. It's also my attempt to learn Rust!
 
 ## Usage
-Run `cargo install aoc-rs-1npo` to download the crate, then use it like this: `aoc-rs <COMMAND> <YEAR> <DAY> <PART>`.
+Run `cargo install aoc-rs-1npo` to download the solver, then use it like this: `aoc-rs <COMMAND> <YEAR> <DAY> <PART>`. The first three arguments are required, PART defaults to 1 if absent.
 
 There are 2 commands, `solve` or `submit`:
 
@@ -32,11 +32,16 @@ aoc-rs submit 2024 1 2
 ## Adding Solutions for New Days
 Follow these steps to add solutions for a new day, and replace `DAY`, `PART`, `YYYY`, and `N` with the appropriate values.
 
-1. Create `dayN.rs` in `src/puzzles/yearYYYY/`
+1. Create `src/puzzles/yearYYYY/dayN.rs`
 2. Add `pub mod dayN;` to `src/puzzles/yearYYYY/mod.rs`
 3. Add `solutions.insert((2024, DAY, PART), Box::new(yearYYYY::dayN::partN));` to `get_puzzle_solution()` in `src/puzzles/mod.rs` 
 4. Implement the input parsing for the day's puzzle in `yearYYYY::dayN::parse()`
 5. Implement the solutions for parts 1 and 2 in `yearYYYY::dayN::part1()` and `yearYYYY::dayN::part2()` respectively
+
+## Adding a New Year
+1. Create `src/puzzles/yearYYYY`
+2. Create `src/puzzles/yearYYYY/mod.rs`
+3. Follow the steps above to create `dayN.rs` files for the year
 
 ## Acknowledgements
 Thanks to Nir for his [`dayN.rs` template](https://github.com/quicknir/advent_rust/blob/main/advent_2023/src/bin/template.rs) and his [file caching code](https://github.com/quicknir/advent_rust/blob/e514ea70c66cb7359c00dbd8de0c1afe425d8aec/utils/src/file_utils.rs) :)
