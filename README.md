@@ -2,7 +2,9 @@
 This is my attempt at using Rust to build an Advent of Code puzzle solver. It's also my attempt to learn Rust!
 
 ## Usage
-Run `cargo install aoc-rs-1npo` to download the solver, then use it like this: `aoc-rs <COMMAND> <YEAR> <DAY> <PART>`. The first three arguments are required, PART defaults to 1 if absent.
+Run `cargo install aoc-rs-1npo` to download the solver, then use it like this: `aoc-rs <COMMAND> <YEAR> <DAY> <PART>`.
+
+The first three arguments are required, PART defaults to 1 if absent.
 
 There are 2 commands, `solve` or `submit`:
 
