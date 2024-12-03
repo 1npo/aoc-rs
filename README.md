@@ -2,10 +2,14 @@
 This is my attempt at using Rust to build an Advent of Code puzzle solver. It's also my attempt to learn Rust!
 
 ## Install
-`cargo install aoc-rs-1npo`
+```console
+cargo install aoc-rs-1npo
+```
 
 ## Usage
-`aoc-rs <COMMAND> <YEAR> <DAY> <PART>`
+```console
+aoc-rs <COMMAND> <YEAR> <DAY> <PART>
+```
 
 The first three arguments are required, `PART` defaults to 1 if absent.
 
@@ -13,10 +17,10 @@ There are 2 commands, `solve` or `submit`:
 
 Use the `solve` commands to print the solution to the screen. For example, to get the solution for part 1 of day 1 in AoC 2024:
 
-```
+```console
 aoc-rs solve 2024 1 1
 ```
-```
+```console
 [2024-12-03T01:29:14Z INFO  aoc_rs_1npo::web] Got puzzle input from cached file
 [2024-12-03T01:29:14Z INFO  aoc_rs_1npo::puzzles] Got puzzle input for year 2024 day 1
 [2024-12-03T01:29:14Z INFO  aoc_rs_1npo::puzzles] Solution for part 1: "1651298"
@@ -24,10 +28,10 @@ aoc-rs solve 2024 1 1
 
 Use the `submit` commands to submit the solution as an answer to adventofcode.com. For example, to submit the solution for part 2 of day 1 in AoC 2024:
 
-```
+```console
 aoc-rs submit 2024 1 2
 ```
-```
+```console
 [2024-12-03T01:35:46Z INFO  aoc_rs_1npo::web] Got puzzle input from cached file
 [2024-12-03T01:35:46Z INFO  aoc_rs_1npo::puzzles] Got puzzle input for year 2024 day 1
 [2024-12-03T01:35:46Z INFO  aoc_rs_1npo::puzzles] Solution for part 2: "21306195"
