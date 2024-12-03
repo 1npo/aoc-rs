@@ -1,8 +1,11 @@
 # aoc-rs
 This is my attempt at using Rust to build an Advent of Code puzzle solver. It's also my attempt to learn Rust!
 
+## Install
+`cargo install aoc-rs-1npo`
+
 ## Usage
-Run `cargo install aoc-rs-1npo` to download the solver, then use it like this: `aoc-rs <COMMAND> <YEAR> <DAY> <PART>`.
+`aoc-rs <COMMAND> <YEAR> <DAY> <PART>`
 
 The first three arguments are required, `PART` defaults to 1 if absent.
 
@@ -31,7 +34,9 @@ aoc-rs submit 2024 1 2
 [2024-12-03T01:35:46Z INFO  aoc_rs_1npo::puzzles] Puzzle solved! Great job!
 ```
 
-## Adding Solutions for New Days
+## Developer Guide
+
+### Adding Solutions for New Days
 Follow these steps to add solutions for a new day, and replace `DAY`, `PART`, `YYYY`, and `N` with the appropriate values.
 
 1. Create `src/puzzles/yearYYYY/dayN.rs`
@@ -40,7 +45,7 @@ Follow these steps to add solutions for a new day, and replace `DAY`, `PART`, `Y
 4. Implement the input parsing for the day's puzzle in `yearYYYY::dayN::parse()`
 5. Implement the solutions for parts 1 and 2 in `yearYYYY::dayN::part1()` and `yearYYYY::dayN::part2()` respectively
 
-## Adding a New Year
+### Adding a New Year
 1. Create `src/puzzles/yearYYYY`
 2. Create `src/puzzles/yearYYYY/mod.rs`
 3. Follow the steps above to create `dayN.rs` files for the year
