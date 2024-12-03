@@ -7,19 +7,7 @@ use log::{info, debug};
 use reqwest::header::{USER_AGENT, COOKIE};
 use homedir::my_home;
 
-const AOC_USER_AGENT: &str = "Nick's AoC Puzzle Solver <http://github.com/1npo/aoc-rs>";
-
-fn get_session_token() -> String {
-    let token = match env::var("AOC_SESSION_TOKEN") {
-        Ok(token) => token,
-        Err(_) => panic!(
-            "You must provide a session token to get your puzzle input. Please put your \
-            session token in the AOC_SESSION_TOKEN environment variable and try again. \
-            Quitting.")
-    };
-
-    token
-}
+const AOC_USER_AGENT: &str = "aoc-rs-1npo <http://github.com/1npo/aoc-rs>";
 
 /// Get the daily puzzle input from a cache file, if it exists, otherwise GET it from the
 /// AoC website and cache it to a file -- to avoid making unnecessary requests. Stores
@@ -66,6 +54,18 @@ pub fn get_input(
     info!("Got puzzle input from cached file");
 
     Ok(std::fs::read_to_string(p).unwrap())
+}
+
+fn get_session_token() -> String {
+    let token = match env::var("AOC_SESSION_TOKEN") {
+        Ok(token) => token,
+        Err(_) => panic!(
+            "You must provide a session token to get your puzzle input. Please put your \
+            session token in the AOC_SESSION_TOKEN environment variable and try again. \
+            Quitting.")
+    };
+
+    token
 }
 
 pub fn get_puzzle_input(
