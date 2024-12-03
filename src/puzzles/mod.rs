@@ -29,7 +29,8 @@ pub fn solve_puzzle(cli: Cli) {
                 cli.year,
                 cli.day,
                 cli.part,
-                solution);
+                &solution);
+            info!("Solution for part {:?} = {:?}", cli.part, solution);
             info!("Submitted puzzle answer");
             info!("{}", solution_result.unwrap());
         }
@@ -60,6 +61,8 @@ pub fn get_puzzle_solution(
     solutions.insert((2024, 1, 2), Box::new(year2024::day1::part2));
     solutions.insert((2024, 2, 1), Box::new(year2024::day2::part1));
     solutions.insert((2024, 2, 2), Box::new(year2024::day2::part2));
+    solutions.insert((2024, 3, 1), Box::new(year2024::day3::part1));
+    solutions.insert((2024, 3, 2), Box::new(year2024::day3::part2));
 
     solutions.get(&(year, day, part)).unwrap()(input)
 }

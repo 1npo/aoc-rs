@@ -90,11 +90,11 @@ pub fn post_puzzle_answer(
     year: u16,
     day: u8,
     part: u8,
-    answer: String
+    answer: &String
 ) -> Result<String, Box<dyn std::error::Error>> {
     let mut params = HashMap::new();
     params.insert("level", part.to_string());
-    params.insert("answer", answer);
+    params.insert("answer", answer.to_string());
 
     let url = format!("https://adventofcode.com/{year}/day/{day}/answer");
     let client = reqwest::blocking::Client::new();
