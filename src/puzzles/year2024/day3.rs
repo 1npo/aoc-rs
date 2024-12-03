@@ -46,7 +46,6 @@ pub fn part2(input: String) -> String {
             },
             &_ => {},
         }
-        println!("{}({}, {})", inst.0, inst.1, inst.2);
     }
 
     products.to_string()
