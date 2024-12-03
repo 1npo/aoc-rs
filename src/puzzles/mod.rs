@@ -23,7 +23,7 @@ pub fn solve_puzzle(cli: Cli) {
     let solution = get_puzzle_solution(cli.year, cli.day, cli.part, puzzle_input);
 
     match cli.method {
-        Method::Solve => info!("Solution: {solution:?}"),
+        Method::Solve => info!("Solution for part {:?}: {solution:?}", cli.part),
         Method::Submit => {
             let solution_result = post_puzzle_answer(
                 cli.year,
