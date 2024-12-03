@@ -13,7 +13,7 @@ aoc-rs <COMMAND> <YEAR> <DAY> <PART>
 
 The first three arguments are required, `PART` defaults to 1 if absent.
 
-There are 2 commands, `solve` or `submit`:
+There are 2 commands: `solve` and `submit`.
 
 Use the `solve` commands to print the solution to the screen. For example, to get the solution for part 1 of day 1 in AoC 2024:
 
