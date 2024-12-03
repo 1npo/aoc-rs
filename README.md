@@ -15,7 +15,7 @@ The first three arguments are required, `PART` defaults to 1 if absent.
 
 There are 2 commands: `solve` and `submit`.
 
-**Use the `solve` command to print the solution to the screen.**
+Use the `solve` command to print the solution to the screen.
 
 For example:
 
@@ -28,7 +28,7 @@ aoc-rs solve 2024 1 1
 [2024-12-03T01:29:14Z INFO  aoc_rs_1npo::puzzles] Solution for part 1 = "1651298"
 ```
 
-**Use the `submit` command to submit the solution as an answer to adventofcode.com.**
+Use the `submit` command to submit the solution as an answer to adventofcode.com.
 
 For example:
 
