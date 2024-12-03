@@ -15,7 +15,9 @@ The first three arguments are required, `PART` defaults to 1 if absent.
 
 There are 2 commands: `solve` and `submit`.
 
-Use the `solve` command to print the solution to the screen. For example, to get the solution for part 1 of day 1 in 2024:
+Use the `solve` command to print the solution to the screen.
+
+For example:
 
 ```console
 aoc-rs solve 2024 1 1
@@ -26,7 +28,9 @@ aoc-rs solve 2024 1 1
 [2024-12-03T01:29:14Z INFO  aoc_rs_1npo::puzzles] Solution for part 1 = "1651298"
 ```
 
-Use the `submit` command to submit the solution as an answer to adventofcode.com. For example, to submit the solution for part 2 of day 1 in AoC 2024:
+Use the `submit` command to submit the solution as an answer to adventofcode.com.
+
+For example:
 
 ```console
 aoc-rs submit 2024 1 2
