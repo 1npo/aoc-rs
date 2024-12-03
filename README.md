@@ -45,9 +45,7 @@ aoc-rs submit 2024 1 2
 ## Developer Guide
 
 ### Adding Solutions for New Days
-Follow these steps to add solutions for a new day.
-
-Replace `DAY`, `PART`, `YYYY`, and `N` with the appropriate values.
+*Replace `DAY`, `PART`, `YYYY`, and `N` with the appropriate values.*
 
 1. Create `src/puzzles/yearYYYY/dayN.rs`
 2. Add `pub mod dayN;` to `src/puzzles/yearYYYY/mod.rs`
