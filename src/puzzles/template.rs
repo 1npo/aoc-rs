@@ -1,6 +1,4 @@
-type Parsed = ();
-
-fn parse(input: String) -> Parsed {}
+fn parse(input: String) -> String {}
 
 pub fn part1(input: String) -> String {
     String::from("")
@@ -17,12 +15,12 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(0, part1(&parse(TEST_INPUT)));
+        assert_eq!(String::from(""), part1(parse(TEST_INPUT)));
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(0, part2(&parse(TEST_INPUT)));
+        assert_eq!(String::from(""), part2(parse(TEST_INPUT)));
     }
 
 }

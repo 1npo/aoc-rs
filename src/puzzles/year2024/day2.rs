@@ -1,10 +1,11 @@
 fn parse(input: String) -> Vec<Vec<i8>> {
     let mut reports: Vec<Vec<i8>> = Vec::new();
-
+    
     for line in input.lines() {
-        reports.push(line.split(" ")
-                         .map(|x| x.parse::<i8>().unwrap())
-                         .collect());
+        reports.push(
+            line.split(" ")
+                .map(|x| x.parse::<i8>().unwrap())
+                .collect());
     }
 
     reports

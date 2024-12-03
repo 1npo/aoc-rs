@@ -12,9 +12,10 @@ const AOC_USER_AGENT: &str = "Nick's AoC Puzzle Solver <http://github.com/1npo/a
 fn get_session_token() -> String {
     let token = match env::var("AOC_SESSION_TOKEN") {
         Ok(token) => token,
-        Err(_) => panic!("You must provide a session token to get your puzzle input. \
-                          Please put your session token in the AOC_SESSION_TOKEN \
-                          environment variable and try again. Quitting."),
+        Err(_) => panic!(
+            "You must provide a session token to get your puzzle input. Please put your \
+            session token in the AOC_SESSION_TOKEN environment variable and try again. \
+            Quitting.")
     };
 
     token
@@ -73,7 +74,8 @@ pub fn get_puzzle_input(
 ) -> Result<String, Box<dyn std::error::Error>> {
     let url = format!("https://adventofcode.com/{year}/day/{day}/input");
     let client = reqwest::blocking::Client::new();
-    let res = client.get(url.clone())
+    let res = client
+        .get(url.clone())
         .header(USER_AGENT, AOC_USER_AGENT)
         .header(COOKIE, get_session_token())
         .send()?;
@@ -96,7 +98,8 @@ pub fn post_puzzle_answer(
 
     let url = format!("https://adventofcode.com/{year}/day/{day}/answer");
     let client = reqwest::blocking::Client::new();
-    let res = client.post(url)
+    let res = client
+        .post(url)
         .header(USER_AGENT, AOC_USER_AGENT)
         .header(COOKIE, get_session_token())
         .form(&params)
@@ -110,8 +113,8 @@ pub fn post_puzzle_answer(
     let caps = re.captures(res_raw_text.as_str());
     let res_text = match caps {
         Some(capture) => String::from(&capture[0])
-                                .replace("<article><p>", "")
-                                .replace(" <a", ""),
+            .replace("<article><p>", "")
+            .replace(" <a", ""),
         None => String::from(""),
     };
 
@@ -127,13 +130,14 @@ pub fn post_puzzle_answer(
         },
         text if res_text.contains("You gave an answer too recently") => {
             let re: Regex = Regex::new(r"You have (?:(\d+)m )?(\d+)s left to wait")
-                                  .unwrap();
+                .unwrap();
             let caps = re.captures(text.as_str());
             let eta = match caps {
-                Some(capture) => format!("Rate limit exceeded. Please wait another \
-                                          {}m {}s before trying again.",
-                                         String::from(&capture[1]),
-                                         String::from(&capture[2])),
+                Some(capture) => format!(
+                    "Rate limit exceeded. Please wait another {}m {}s before trying \
+                    again.",
+                    String::from(&capture[1]),
+                    String::from(&capture[2])),
 
                 None => String::from(""),
             };

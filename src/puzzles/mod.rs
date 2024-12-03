@@ -25,10 +25,11 @@ pub fn solve_puzzle(cli: Cli) {
     match cli.method {
         Method::Solve => info!("Solution: {solution:?}"),
         Method::Submit => {
-            let solution_result = post_puzzle_answer(cli.year,
-                                                     cli.day,
-                                                     cli.part,
-                                                     solution);
+            let solution_result = post_puzzle_answer(
+                cli.year,
+                cli.day,
+                cli.part,
+                solution);
             info!("Submitted puzzle answer");
             info!("{}", solution_result.unwrap());
         }
@@ -52,8 +53,8 @@ pub fn get_puzzle_solution(
     //
     // When you add a new dayN.rs module, make sure to insert its part1 and part2
     // functions into this HashMap.
-    let mut solutions: HashMap<(u16, u8, u8),
-                                Box<dyn Fn(String) -> String>> = HashMap::new();
+    let mut solutions: HashMap<
+        (u16, u8, u8), Box<dyn Fn(String) -> String>> = HashMap::new();
 
     solutions.insert((2024, 1, 1), Box::new(year2024::day1::part1));
     solutions.insert((2024, 1, 2), Box::new(year2024::day1::part2));
