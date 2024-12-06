@@ -65,6 +65,8 @@ pub fn get_puzzle_solution(
     solutions.insert((2024, 3, 2), Box::new(year2024::day3::part2));
     solutions.insert((2024, 4, 1), Box::new(year2024::day4::part1));
     solutions.insert((2024, 4, 2), Box::new(year2024::day4::part2));
+    solutions.insert((2024, 5, 1), Box::new(year2024::day5::part1));
+    solutions.insert((2024, 5, 2), Box::new(year2024::day5::part2));
 
     solutions.get(&(year, day, part)).unwrap()(input)
 }
