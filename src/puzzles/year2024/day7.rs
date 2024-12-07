@@ -70,7 +70,7 @@ fn eval_calibration(
                 '|' => result = format!("{}{}", result, calibration.test_values[i + 1])
                     .parse::<u128>()
                     .unwrap(),
-                _ => unreachable!("Only '+' and '*' were expected!"),
+                _ => unreachable!("Only '+', '*', and '|' were expected!"),
             }
         }
         if result == calibration.test_result {
