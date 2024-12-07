@@ -1,4 +1,6 @@
-fn parse(input: String) -> String {}
+fn parse(input: String) -> String {
+    String::from("")
+}
 
 pub fn part1(input: String) -> String {
     String::from("")

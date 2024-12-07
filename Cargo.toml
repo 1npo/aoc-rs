@@ -18,6 +18,7 @@ clap = { version = "4.5.20", features = ["derive"] }
 reqwest = { version = "0.12.9", features = ["blocking"] }
 homedir = "0.3.4"
 microbench = "0.5.0"
+itertools = "0.13.0"
 
 [[bin]]
 name = "aoc-rs"
