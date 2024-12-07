@@ -16,6 +16,9 @@ pub struct Cli {
     /// Solve the second part of the day's puzzle (default: solve the first part)
     #[arg(default_value_t = 1, value_parser = clap::value_parser!(u8).range(1..3))]
     pub part: u8,
+
+    #[arg(short, long, default_value_t = false)]
+    pub bench: bool,
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]

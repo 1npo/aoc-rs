@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
 fn parse(input: String) -> (Vec<Vec<i8>>, Vec<Vec<i8>>) {
     let mut rules: Vec<Vec<i8>> = Vec::new();

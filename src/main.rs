@@ -1,4 +1,4 @@
-use env_logger::Env;
+use env_logger::{Builder, Env};
 use clap::Parser;
 
 use aoc_rs_1npo::solve_puzzle;
@@ -9,7 +9,8 @@ fn main() {
     let env = Env::default()
         .filter_or("AOC_LOG_LEVEL", "info")
         .write_style_or("AOC_LOG_STYLE", "always");
-    
-    env_logger::init_from_env(env);
+    let mut builder = Builder::from_env(env);
+
+    builder.format_timestamp_micros().init();
     solve_puzzle(cli);
 }

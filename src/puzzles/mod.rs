@@ -1,8 +1,9 @@
-pub mod year2024;
-
 use std::collections::HashMap;
-use log::info;
 
+use log::info;
+use microbench::{self, Options};
+
+pub mod year2024;
 use crate::{Cli, Method, get_input, post_puzzle_answer};
 
 /// 1. Get the puzzle input for the given year and day (eg 2024, 1)
@@ -20,7 +21,12 @@ pub fn solve_puzzle(cli: Cli) {
         Err(error) => panic!("Failed to get puzzle input! ({:?})", error)
     };
     
-    let solution = get_puzzle_solution(cli.year, cli.day, cli.part, puzzle_input);
+    let solution = get_puzzle_solution(
+        cli.year,
+        cli.day,
+        cli.part,
+        puzzle_input,
+        cli.bench);
 
     match cli.method {
         Method::Solve => info!("Solution for part {:?} = {solution:?}", cli.part),
@@ -49,6 +55,7 @@ pub fn get_puzzle_solution(
     day: u8,
     part: u8,
     input: String,
+    bench: bool
 ) -> String {
     // A mapping of (day, part) tuples to functions in dayN.rs modules.
     //
@@ -67,6 +74,15 @@ pub fn get_puzzle_solution(
     solutions.insert((2024, 4, 2), Box::new(year2024::day4::part2));
     solutions.insert((2024, 5, 1), Box::new(year2024::day5::part1));
     solutions.insert((2024, 5, 2), Box::new(year2024::day5::part2));
+    solutions.insert((2024, 6, 1), Box::new(year2024::day6::part1));
+    solutions.insert((2024, 6, 2), Box::new(year2024::day6::part2));
 
-    solutions.get(&(year, day, part)).unwrap()(input)
+    let puzzle_fn = solutions.get(&(year, day, part)).unwrap();
+
+    if bench {
+        let options = Options::default();
+        microbench::bench(&options, "puzzle_fn", || { puzzle_fn(input.clone()); });
+    }
+
+    puzzle_fn(input)
 }
