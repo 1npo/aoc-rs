@@ -78,6 +78,8 @@ pub fn get_puzzle_solution(
     solutions.insert((2024, 6, 2), Box::new(year2024::day6::part2));
     solutions.insert((2024, 7, 1), Box::new(year2024::day7::part1));
     solutions.insert((2024, 7, 2), Box::new(year2024::day7::part2));
+    solutions.insert((2024, 8, 1), Box::new(year2024::day8::part1));
+    solutions.insert((2024, 8, 2), Box::new(year2024::day8::part2));
 
     let puzzle_fn = solutions.get(&(year, day, part)).unwrap();
 
