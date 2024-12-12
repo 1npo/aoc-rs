@@ -150,7 +150,6 @@ pub fn part2(input: String) -> String {
                     antinode1.0 + distance.0,
                     antinode1.1 + distance.1
                 );
-
             }
 
             let mut antinode2 = (antenna2.0, antenna2.1);
